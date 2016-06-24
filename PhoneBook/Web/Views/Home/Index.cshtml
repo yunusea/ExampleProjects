@@ -1,0 +1,31 @@
+﻿@model Web.ViewModel.HomeViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    
+    @using (Html.BeginForm("PhoneNumberAdd", "Home",FormMethod.Post))
+    {
+        @Html.Label("Ad-Soyad")
+        @Html.TextBoxFor(m => m.PhoneNumber.NameSurname)
+        <br />
+        @Html.Label("Telefon Numarası")
+        @Html.TextBoxFor(m => m.PhoneNumber.PhoneNumber)
+        <input type="submit" value="Kaydet" />
+    }
+
+
+    @foreach (var item in Model.PhoneBookList)
+    {
+        <p>@item.NameSurname <br /> @item.PhoneNumber</p>
+    }
+</body>
+</html>
