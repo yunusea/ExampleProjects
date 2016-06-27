@@ -15,7 +15,7 @@ namespace Presentation
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            Business.Castle.Initialize();
+            IoC.Initialize();
         }
     }
 }

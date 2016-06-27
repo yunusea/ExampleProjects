@@ -1,18 +1,14 @@
-﻿using Castle.MicroKernel.Registration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using Data.Model;
 using Contracts.Repository;
 using Repository;
-using Data.Model;
 
-namespace Business
+namespace Presentation
 {
-    public class RepositoryInstaller : IWindsorInstaller
+    internal class RepositoryInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {

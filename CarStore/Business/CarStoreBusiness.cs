@@ -10,13 +10,20 @@ namespace Business
 {
     public class CarStoreBusiness
     {
+        private readonly IVehicleRepository<Vehicle> _vehicleRepository;
+
+        public CarStoreBusiness(IVehicleRepository<Vehicle> VehicleRepository)
+        {
+            _vehicleRepository = VehicleRepository;
+        }
+
         public string AddVehicle(Vehicle entity)
         {
             string _info;
             try
             {
-                Castle.Resolve<IVehicleRepository<Vehicle>>().AddVehicle(entity);
-                Castle.Resolve<IVehicleRepository<Vehicle>>().SaveVehicle();
+                _vehicleRepository.AddVehicle(entity);
+                _vehicleRepository.SaveVehicle();
                 _info = entity.Brand + " marka " + entity.Model + " model bir araç eklendi.";
             }
             catch (Exception error)
@@ -30,14 +37,14 @@ namespace Business
         public string DeleteVehicle(int id)
         {
             string _info;
-            var entity = Castle.Resolve<IVehicleRepository<Vehicle>>().GetById(id);
+            var entity = _vehicleRepository.GetById(id);
 
             if (entity != null)
             {
                 try
                 {
-                    Castle.Resolve<IVehicleRepository<Vehicle>>().DeleteVehicle(entity);
-                    Castle.Resolve<IVehicleRepository<Vehicle>>().SaveVehicle();
+                    _vehicleRepository.DeleteVehicle(entity);
+                    _vehicleRepository.SaveVehicle();
                     _info = entity.Brand + " marka " + entity.Model + " model " + entity.Plate + " plakalı aracı sildiniz.";
                 }
                 catch (Exception error)
@@ -54,7 +61,7 @@ namespace Business
 
         public IEnumerable<Vehicle> GetList()
         {
-            return Castle.Resolve<IVehicleRepository<Vehicle>>().GetVehicleList();
+            return _vehicleRepository.GetVehicleList();
         }
     }
 }

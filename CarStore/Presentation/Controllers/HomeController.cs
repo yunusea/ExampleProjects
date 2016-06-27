@@ -11,10 +11,9 @@ namespace Presentation.Controllers
 {
     public class HomeController : Controller
     {
-        CarStoreBusiness business = new CarStoreBusiness();
         public ActionResult Index()
         {
-            var list = business.GetList();
+            var list = IoC.Resolve<IVehicleRepository<Vehicle>>().GetVehicleList();
             return View(list);
         }
 
@@ -26,13 +25,14 @@ namespace Presentation.Controllers
         [HttpPost]
         public ActionResult AddVehicle(Vehicle obj)
         {
-            business.AddVehicle(obj);
+            IoC.Resolve<IVehicleRepository<Vehicle>>().AddVehicle(obj);
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult DeleteVehicle(int? id)
         {
-            business.DeleteVehicle(id.Value);
+            var entity = IoC.Resolve<IVehicleRepository<Vehicle>>().GetById(id.Value);
+            IoC.Resolve<IVehicleRepository<Vehicle>>().DeleteVehicle(entity);
             return RedirectToAction("Index", "Home");
         }
     }
