@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Data.Model.Vehicle>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        @Html.ActionLink("Araç Ekle","AddVehicle","Home")
+        <br />
+        Araç Listesi;
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li><span>@item.Brand</span><span>@item.Model</span><span>@item.Plate</span><span>@item.Status</span><span>@Html.ActionLink("Sil", "DeleteVehicle", "Home",new { id = item.Id}, htmlAttributes: new { @style = "text-decoration:none; color:#f00;"})</span></li>
+            }
+        </ul>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+﻿@model Data.Model.Vehicle
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddVehicle</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("AddVehicle", "Home", FormMethod.Post))
+        {
+            @Html.LabelFor(model => model.Brand)
+            @Html.TextBoxFor(model => model.Brand)
+            <br />
+            @Html.LabelFor(model => model.Model)
+            @Html.TextBoxFor(model => model.Model)
+            <br />
+            @Html.LabelFor(model => model.Plate)
+            @Html.TextBoxFor(model => model.Plate)
+            <br />
+            @Html.LabelFor(model => model.Status)
+            @Html.CheckBoxFor(model => model.Status)
+            <br />
+            <input type="submit" value="Kaydet" />
+        }
+    </div>
+</body>
+</html>
